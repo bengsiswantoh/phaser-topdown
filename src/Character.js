@@ -10,8 +10,6 @@ export default class Character extends Phaser.GameObjects.Sprite {
   constructor(baseKey, scene, x, y, texture, frame) {
     super(scene, x, y, texture, frame);
 
-    this.scale = 3;
-
     scene.add.existing(this);
 
     scene.physics.add.existing(this);
@@ -28,14 +26,14 @@ export default class Character extends Phaser.GameObjects.Sprite {
 
   update() {
     const distance = Phaser.Math.Distance.Between(
-      this.body.x,
-      this.body.y,
+      this.body.center.x,
+      this.body.center.y,
       this.target.x,
       this.target.y
     );
     console.log(distance);
 
-    if (distance <= 35) {
+    if (distance <= 4) {
       this.body.velocity.set(0, 0);
     }
 
@@ -101,8 +99,9 @@ export default class Character extends Phaser.GameObjects.Sprite {
       }
     }
 
-    this.state = "walk";
-    if (this.body.speed === 0) {
+    if (this.body.speed !== 0) {
+      this.state = "walk";
+    } else {
       this.state = "idle";
     }
 

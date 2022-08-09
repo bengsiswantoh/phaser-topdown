@@ -3,8 +3,11 @@ import * as Phaser from "phaser";
 import LoadingScene from "./scenes/LoadingScene";
 import MainScene from "./scenes/MainScene";
 
+const parent = "game";
+const div = document.getElementById(parent);
+
 const config = {
-  parent: "game",
+  parent,
   type: Phaser.AUTO,
   width: 800,
   height: 600,
